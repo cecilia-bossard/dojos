@@ -29,7 +29,7 @@ export class RomanNumerals {
 
     private static convertSafely(number: number): string {
         let roman = "";
-        var remaining = number;
+        let remaining = number;
 
         this.intToNumerals.forEach((value, key) => {
             while (remaining >= key) {

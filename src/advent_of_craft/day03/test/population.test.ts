@@ -29,7 +29,7 @@ describe('Population tests', () => {
 
     it('should return who owns the yougest pet', () => {
 
-        var filtered = population.reduce((person, current) => Math.min(...current.pets.map(pet => pet.age)) < Math.min(...person.pets.map(pet => pet.age)) ? current : person, population[0]);
+        let filtered = population.reduce((person, current) => Math.min(...current.pets.map(pet => pet.age)) < Math.min(...person.pets.map(pet => pet.age)) ? current : person, population[0]);
 
         expect(filtered).not.toBeNull();
         expect(filtered.firstName).toEqual("Lois");

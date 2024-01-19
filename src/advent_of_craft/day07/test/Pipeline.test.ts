@@ -30,7 +30,7 @@ describe("Pipeline tests", () => {
     it('project with tests that deploys successfully with email notification', () => {
         sendEmailSummary.mockReturnValueOnce(true); 
 
-        var project = Project.builder()
+        let project = Project.builder()
                 .setTestStatus(TestStatus.PASSING_TESTS)
                 .setDeploysSuccessfully(true)
                 .build();
@@ -51,7 +51,7 @@ describe("Pipeline tests", () => {
     it('project_with_tests_that_deploys_successfully_without_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(false); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.PASSING_TESTS)
             .setDeploysSuccessfully(true)
             .build();
@@ -70,7 +70,7 @@ describe("Pipeline tests", () => {
     it('project_without_tests_that_deploys_successfully_with_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(true); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.NO_TESTS)
             .setDeploysSuccessfully(true)
             .build();
@@ -89,7 +89,7 @@ describe("Pipeline tests", () => {
     it('project_without_tests_that_deploys_successfully_without_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(false); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.NO_TESTS)
             .setDeploysSuccessfully(true)
             .build();
@@ -108,7 +108,7 @@ describe("Pipeline tests", () => {
     it('project_with_tests_that_fail_with_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(true); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.FAILING_TESTS)
             .build();
 
@@ -125,7 +125,7 @@ describe("Pipeline tests", () => {
     it('project_with_tests_that_fail_without_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(false); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.FAILING_TESTS)
             .build();
 
@@ -142,7 +142,7 @@ describe("Pipeline tests", () => {
     it('project_with_tests_and_failing_build_with_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(true); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.PASSING_TESTS)
             .setDeploysSuccessfully(false)
             .build();
@@ -161,7 +161,7 @@ describe("Pipeline tests", () => {
     it('project_with_tests_and_failing_build_without_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(false); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.PASSING_TESTS)
             .setDeploysSuccessfully(false)
             .build();
@@ -180,7 +180,7 @@ describe("Pipeline tests", () => {
     it('project_without_tests_and_failing_build_with_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(true); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.NO_TESTS)
             .setDeploysSuccessfully(false)
             .build();
@@ -199,7 +199,7 @@ describe("Pipeline tests", () => {
     it('project_without_tests_and_failing_build_without_email_notification', () => {
         sendEmailSummary.mockReturnValueOnce(false); 
 
-        var project = Project.builder()
+        let project = Project.builder()
             .setTestStatus(TestStatus.NO_TESTS)
             .setDeploysSuccessfully(false)
             .build();

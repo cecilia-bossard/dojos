@@ -45,14 +45,14 @@ describe('Population tests', () => {
     function formatPopulation(): string {
         let response = "";
 
-        for(var person of population) {
+        for(let person of population) {
             response = response.concat(`${person.firstName} ${person.lastName}`);
 
             if (!isEmpty(person.pets)) {
                 response = response.concat(" who owns : ");
             }
 
-            for(var pet of person.pets) {
+            for(let pet of person.pets) {
                 response = response.concat(pet.name).concat(" ");
             };
 

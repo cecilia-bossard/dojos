@@ -18,7 +18,7 @@ describe('Article tests', () => {
                 "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
         );
 
-        var text = "Amazing article !!!";
+        let text = "Amazing article !!!";
         article.addComment(text, "Pablo Escobar");
 
         expect(article.getComments()).toHaveLength(1);
@@ -26,12 +26,12 @@ describe('Article tests', () => {
     });
 
     it('should add a comment with the given author', () => {
-        var article = new Article(
+        let article = new Article(
                 "Lorem Ipsum",
                 "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
         );
 
-        var author = "Pablo Escobar";
+        let author = "Pablo Escobar";
         article.addComment("Amazing article !!!", author);
 
         expect(article.getComments()).toHaveLength(1);
@@ -39,7 +39,7 @@ describe('Article tests', () => {
     });
 
     it('should add a comment with the date of the day', () =>  {
-        var article = new Article(
+        let article = new Article(
                 "Lorem Ipsum",
                 "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
         );
@@ -48,7 +48,7 @@ describe('Article tests', () => {
     });
 
     it('should throw an exception when adding existing comment', () => {
-        var article = new Article(
+        let article = new Article(
                 "Lorem Ipsum",
                 "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
         );

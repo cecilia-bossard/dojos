@@ -1,5 +1,6 @@
 import { Article } from "../src/Article";
 import { CommentAlreadyExistException } from "../src/CommentAlreadyExistException";
+import { Comment } from "../src/Comment";
 
 describe("Article tests", () => {
   it("should add valid comment", () => {

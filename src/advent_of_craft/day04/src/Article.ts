@@ -6,14 +6,13 @@ export class Article {
     content: String;
     comments: Array<Comment>;
 
-    constructor(name: String, content: String) {
-        this.name = name;
-        this.content = content;
+    constructor(init?:Partial<Article>) {
+        Object.assign(this, init);
         this.comments = [];
-    }
+    };
 
     addComment(text: String, author: String, creationDate : Date = new Date()) {
-        const comment = new Comment(text, author, creationDate);
+        const comment = new Comment({text, author, creationDate});
         if(this.comments.includes(comment)) {
             throw new CommentAlreadyExistException();
         } else {

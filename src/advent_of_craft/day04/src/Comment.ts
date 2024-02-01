@@ -3,9 +3,7 @@ export class Comment {
     author: String;
     creationDate: Date;
 
-    constructor(text: String, author: String, creationDate: Date) {
-        this.text = text;
-        this.author = author;
-        this.creationDate = creationDate;
-    }
+    constructor(init?:Partial<Comment>) {
+        Object.assign(this, init);
+    };
 }

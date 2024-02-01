@@ -5,10 +5,8 @@ export class Food {
     approvedForConsumption: Boolean;
     inspectorId: String;
 
-    constructor(expirationDate: Date, approvedForConsumption: Boolean, inspectorId: String) {
-        this.expirationDate= expirationDate;
-        this.approvedForConsumption = approvedForConsumption;
-        this.inspectorId = inspectorId;
+    constructor(init?:Partial<Food>) {
+        Object.assign(this, init);
     };
 
     isEdible(now: Date): Boolean {

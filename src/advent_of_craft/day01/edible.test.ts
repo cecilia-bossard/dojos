@@ -1,6 +1,7 @@
-import { Food } from "./Food";
+
 const { add, sub } = require("date-fns");
 import { v4 as uuid } from "uuid";
+import { Food } from "./Food";
 
 describe("Edible tests", () => {
   const expirationDate = new Date(2023, 1, 12);

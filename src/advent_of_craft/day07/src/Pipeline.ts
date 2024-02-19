@@ -1,5 +1,16 @@
 import { Project } from "./dependencies/Project";
 
+const SUCCESS = "success";
+
+const TEST_FAILED = "Tests failed";
+const EMAIL_DISABLED = "Email disabled";
+const SENDING_EMAIL = "Sending email";
+const NO_TESTS = "No tests";
+const TESTS_PASSED = "Tests passed";
+
+const DEPLOYMENT_COMPLETED_SUCCESSFULLY = "Deployment completed successfully";
+const DEPLOYMENT_SUCCESSFUL = "Deployment successful";
+const DEPLOYMENT_FAILED = "Deployment failed";
 export class Pipeline {
   config: Config;
   emailer: Emailer;
@@ -10,47 +21,46 @@ export class Pipeline {
   }
 
   run(project: Project) {
-    let testsPassed: Boolean;
-    let deploySuccessful: Boolean;
-
-    if (project.hasTests()) {
-      if ("success" === project.runTests()) {
-        this.log.info("Tests passed");
-        testsPassed = true;
-      } else {
-        this.log.error("Tests failed");
-        testsPassed = false;
-      }
-    } else {
-      this.log.info("No tests");
-      testsPassed = true;
+     const testsPassed = this.runTests(project);
+    if (!testsPassed) {
+      this.sendMail(TEST_FAILED);
+      return;
     }
-
-    if (testsPassed) {
-      if ("success" === project.deploy()) {
-        this.log.info("Deployment successful");
-        deploySuccessful = true;
-      } else {
-        this.log.error("Deployment failed");
-        deploySuccessful = false;
-      }
-    } else {
-      deploySuccessful = false;
+    if (!this.isDeploySuccessfull(project)) {
+      this.sendMail(DEPLOYMENT_FAILED);
+      return;
     }
+    this.sendMail(DEPLOYMENT_COMPLETED_SUCCESSFULLY);
+  }
 
+  private runTests(project: Project): boolean {
+    if (!project.hasTests()) {
+      this.log.info(NO_TESTS);
+      return true;
+    }
+    if (SUCCESS === project.runTests()) {
+      this.log.info(TESTS_PASSED);
+      return true;
+    }
+    this.log.error(TEST_FAILED);
+    return false;
+  }
+
+  private isDeploySuccessfull(project: Project): boolean {
+    if (SUCCESS === project.deploy()) {
+      this.log.info(DEPLOYMENT_SUCCESSFUL);
+      return true;
+    }
+    this.log.error(DEPLOYMENT_FAILED);
+    return false;
+  }
+
+  private sendMail(message: string) {
     if (this.config.sendEmailSummary()) {
-      this.log.info("Sending email");
-      if (testsPassed) {
-        if (deploySuccessful) {
-          this.emailer.send("Deployment completed successfully");
-        } else {
-          this.emailer.send("Deployment failed");
-        }
-      } else {
-        this.emailer.send("Tests failed");
-      }
+      this.log.info(SENDING_EMAIL);
+      this.emailer.send(message);
     } else {
-      this.log.info("Email disabled");
+      this.log.info(EMAIL_DISABLED);
     }
   }
 }
